@@ -26,6 +26,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 <robot name="husky_robot_gazebo" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:include filename="$(find husky_gazebo)/urdf/accessories/kinect_camera.gazebo.xacro"/>
+  <xacro:include filename="$(find husky_gazebo)/urdf/accessories/kinectv2_camera.gazebo.xacro"/>
+  <xacro:include filename="$(find husky_gazebo)/urdf/accessories/basler_camera.gazebo.xacro"/>
 
   <xacro:macro name="husky_robot_gazebo">
 
@@ -59,7 +61,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
         <drift>0.0001 0.0001 0.0001</drift>
       </plugin>
     </gazebo>
-  
+
     <xacro:if value="$(arg ur5_enabled)">
       <!--Remove when https://github.com/ros-industrial/universal_robot/pull/168 is resolved -->
       <gazebo reference="ur5_arm_shoulder_link">
@@ -85,11 +87,52 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       </gazebo>
     </xacro:if>
 
+    <xacro:if value="$(arg ur5_camera_enabled)">
+      <!--Remove when https://github.com/ros-industrial/universal_robot/pull/168 is resolved -->
+      <gazebo reference="ur5_arm_shoulder_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_upper_arm_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_forearm_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_wrist_1_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_wrist_3_link">
+       <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_wrist_2_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_ee_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_tool_mount_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_camera_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <gazebo reference="ur5_arm_marker_link">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+      <xacro:basler_camera_gazebo prefix="ur5_arm_camera"/>
+      <gazebo reference="ur5_arm_camera_frame_optical">
+        <selfCollide>true</selfCollide>
+      </gazebo>
+    </xacro:if>
+
     <xacro:if value="$(arg kinect_enabled)">
       <xacro:kinect_camera_gazebo prefix="camera"/>
+    </xacro:if>
+
+    <xacro:if value="$(arg kinectv2_enabled)">
+      <xacro:kinectv2_camera_gazebo prefix="camera"/>
     </xacro:if>
 
   </xacro:macro>
 
 </robot>
-
