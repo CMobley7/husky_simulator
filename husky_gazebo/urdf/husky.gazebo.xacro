@@ -27,6 +27,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
   <xacro:include filename="$(find husky_gazebo)/urdf/accessories/kinect_camera.gazebo.xacro"/>
   <xacro:include filename="$(find husky_gazebo)/urdf/accessories/kinectv2_camera.gazebo.xacro"/>
+  <xacro:include filename="$(find husky_gazebo)/urdf/accessories/primesense_carmine_1-09_camera.gazebo.xacro"/>
   <xacro:include filename="$(find husky_gazebo)/urdf/accessories/basler_camera.gazebo.xacro"/>
 
   <xacro:macro name="husky_robot_gazebo">
@@ -110,17 +111,17 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
       <gazebo reference="ur5_arm_ee_link">
         <selfCollide>true</selfCollide>
       </gazebo>
-      <gazebo reference="ur5_arm_tool_mount_link">
+      <gazebo reference="ur5_arm_camera_mount_link">
         <selfCollide>true</selfCollide>
       </gazebo>
       <gazebo reference="ur5_arm_camera_link">
         <selfCollide>true</selfCollide>
       </gazebo>
-      <gazebo reference="ur5_arm_marker_link">
+      <gazebo reference="ur5_arm_laser_pointer_link">
         <selfCollide>true</selfCollide>
       </gazebo>
       <xacro:basler_camera_gazebo prefix="ur5_arm_camera"/>
-      <gazebo reference="ur5_arm_camera_frame_optical">
+      <gazebo reference="ur5_arm_camera_optical_frame">
         <selfCollide>true</selfCollide>
       </gazebo>
     </xacro:if>
@@ -131,6 +132,10 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 
     <xacro:if value="$(arg kinectv2_enabled)">
       <xacro:kinectv2_camera_gazebo prefix="camera"/>
+    </xacro:if>
+
+    <xacro:if value="$(arg primesense_enabled)">
+      <xacro:primesense_camera_gazebo prefix="camera"/>
     </xacro:if>
 
   </xacro:macro>

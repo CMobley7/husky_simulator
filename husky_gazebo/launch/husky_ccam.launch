@@ -29,7 +29,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="ur5_enabled" default="false"/>
   <arg name="ur5_camera_enabled" default="true"/>
   <arg name="kinect_enabled" default="false"/>
-  <arg name="kinectv2_enabled" default="true"/>
+  <arg name="kinectv2_enabled" default="false"/>
+  <arg name="primesense_enabled" default="true"/>
 
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find husky_gazebo)/launch/husky_empty_world.launch">
@@ -39,6 +40,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
     <arg name="ur5_camera_enabled" value="$(arg ur5_camera_enabled)"/>
     <arg name="kinect_enabled" value="$(arg kinect_enabled)"/>
     <arg name="kinectv2_enabled" value="$(arg kinectv2_enabled)"/>
+    <arg name="primesense_enabled" value="$(arg primesense_enabled)"/>
   </include>
 
 </launch>
