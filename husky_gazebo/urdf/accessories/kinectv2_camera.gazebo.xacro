@@ -27,7 +27,7 @@
         <depthImageTopicName>/${prefix}/depth/image_raw</depthImageTopicName>
 	<depthImageCameraInfoTopicName>/${prefix}/depth/camera_info</depthImageCameraInfoTopicName>
         <pointCloudTopicName>/${prefix}/depth/points</pointCloudTopicName>
-        <frameName>${prefix}_optical_frame</frameName>
+        <frameName>kinect2_link</frameName>
         <baseline>0.1</baseline>
 	<hackBaseline>0</hackBaseline>
 	<pointCloudCutoff>0.35</pointCloudCutoff>
